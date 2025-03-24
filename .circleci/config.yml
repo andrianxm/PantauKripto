@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   build:
-    executor: android/android
+    executor: android/android-machine
     steps:
       - checkout
       - restore_cache:
@@ -35,3 +35,8 @@ jobs:
       - store_artifacts:
           path: app/build/outputs/apk/debug/
           destination: artifact-file
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
