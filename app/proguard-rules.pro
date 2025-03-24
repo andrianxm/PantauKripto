@@ -116,11 +116,3 @@
     public static int w(...);
     public static int e(...);
 }
-
-# Dynamic feature split install
--keep class com.google.android.play.core.splitinstall.* { *; }
--keep class com.google.android.play.core.** { *; }
-
-# Lindungi semua class di modul favorite (tanpa sebut nama class spesifik)
--keep class com.andrian.favorite.** { *; }
-
