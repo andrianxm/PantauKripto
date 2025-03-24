@@ -7,7 +7,6 @@ jobs:
     executor: android/android
     steps:
       - checkout
-
       - restore_cache:
           keys:
             - android-deps-{{ checksum "build.gradle" }}
