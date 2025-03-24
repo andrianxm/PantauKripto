@@ -1,38 +1,51 @@
 version: 2.1
 
+orbs:
+  android: circleci/android@1.0.3
+
 jobs:
   build:
-    docker:
-      - image: cimg/android:2023.11
+    executor:
+      name: android/android-machine
+      resource-class: medium
+    working_directory: ~/code
     steps:
       - checkout
+
       - restore_cache:
-          key: android-build-cache-v1-{{ checksum "build.gradle.kts" }}
+          keys:
+            - android-deps-{{ checksum "build.gradle" }}
+            - android-deps-
+
       - run:
-          name: Chmod permissions
+          name: Grant Permission to Gradle Wrapper
           command: chmod +x ./gradlew
-      - run:
-          name: Check Java version
-          command: java -version
+
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
+
       - save_cache:
-          key: android-build-cache-v1-{{ checksum "build.gradle.kts" }}
           paths:
-            - ~/.android/build-cache
-            - ~/.gradle/caches
+            - ~/.gradle
+            - ~/.android
+          key: android-deps-{{ checksum "build.gradle" }}
+
       - run:
           name: Run Build
           command: ./gradlew build
+
       - store_artifacts:
           path: app/build/reports
           destination: reports
+
       - run:
-          name: Run Tests
-          command: ./gradlew lint test
+          name: Run Lint and Unit Tests
+          command: ./gradlew lint testDebugUnitTest
+
       - store_test_results:
-          path: app/build/test-results
+          path: app/build/test-results/testDebugUnitTest
+
       - store_artifacts:
-          path: app/build/outputs/apk/debug/
-          destination: artifact-file
+          path: app/build/outputs/apk/debug/app-debug.apk
+          destination: apks
