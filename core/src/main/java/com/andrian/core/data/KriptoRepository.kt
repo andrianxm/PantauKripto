@@ -25,6 +25,7 @@ class KriptoRepository(
                 }
             }
 
+            @Suppress("SameReturnValue")
             override fun shouldFetch(data: List<Kripto>?): Boolean = true
 
             override suspend fun createCall(): Flow<ApiResponse<List<KriptoResponse>>> =

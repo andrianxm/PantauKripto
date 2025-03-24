@@ -2,9 +2,6 @@
     <string name="app_name">PantauKripto</string>
     <string name="title_favorite">Favorite</string>
     <string name="no_data">Data masih kosong!</string>
-    <string name="menu_favorite">Favorite</string>
-    <string name="menu_home">Home</string>
-    <string name="menu_about">About</string>
     <string name="something_error">Opps.. terjadi eror</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="name">Andrian Maulana</string>
@@ -18,7 +15,7 @@
     <string name="btc">BTC</string>
     <string name="btc_idr">BTC/IDR</string>
     <string name="market_logo">Market Logo</string>
-    <string name="cari_koin">Cari koin...</string>
+    <string name="cari_koin">Cari koin…</string>
     <string name="beli_rp_90_000_jual_rp_95_000">Beli: Rp 90.000 | Jual: Rp 95.000</string>
     <string name="harga_terakhir_rp_100_000">Harga Terakhir: Rp 100.000</string>
     <string name="favorite">Favorite</string>

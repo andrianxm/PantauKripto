@@ -53,7 +53,6 @@ class FavoriteKriptoFragment : Fragment() {
         binding.topAppBar.navigationIcon = null
         binding.topAppBar.title = "Favorite List"
         setupRecyclerView()
-        observeFavorites()
     }
 
     private fun setupRecyclerView() {
@@ -72,14 +71,6 @@ class FavoriteKriptoFragment : Fragment() {
 
         favoriteKriptoViewModel.favoriteKripto.observe(viewLifecycleOwner) { favorites ->
             kriptoAdapter.submitList(favorites)
-            binding.viewEmpty.root.visibility =
-                if (favorites.isNotEmpty()) View.GONE else View.VISIBLE
-        }
-    }
-
-    private fun observeFavorites() {
-        favoriteKriptoViewModel.favoriteKripto.observe(viewLifecycleOwner) { favorites ->
-            (binding.rvFavorite.adapter as KriptoAdapter).submitList(favorites)
             binding.viewEmpty.root.visibility =
                 if (favorites.isNotEmpty()) View.GONE else View.VISIBLE
         }

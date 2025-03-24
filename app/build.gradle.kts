@@ -12,6 +12,7 @@ android {
     defaultConfig {
         applicationId = "com.andrian.pantaukripto"
         minSdk = 26
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -21,11 +22,16 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
+        }
+        debug {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
@@ -75,8 +81,9 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.navigation.ui)
-
+    implementation(libs.navigation.dynamic.features.runtime)
     implementation(project(":core"))
     implementation(libs.play.services.base)
     implementation(libs.androidx.navigation.dynamic.features.fragment)
+    debugImplementation (libs.leakcanary.android)
 }

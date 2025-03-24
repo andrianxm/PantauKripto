@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.andrian.pantaukripto.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+
+        binding.bottomNavigation.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -55,9 +58,12 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-        binding.bottomNavigation.selectedItemId = R.id.homeFragment
+        if (savedInstanceState == null) {
+            binding.bottomNavigation.selectedItemId = R.id.homeFragment
+        }
     }
 
+    @Suppress("DEPRECATION")
     private fun setStatusBarColor(colorRes: Int, lightIcons: Boolean) {
         window.statusBarColor = ContextCompat.getColor(this, colorRes)
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars =

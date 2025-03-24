@@ -1,6 +1,5 @@
 package com.andrian.core.domain.usecase
 
-import com.andrian.core.domain.model.Kripto
 import com.andrian.core.domain.repository.IKriptoRepository
 import kotlinx.coroutines.flow.Flow
 

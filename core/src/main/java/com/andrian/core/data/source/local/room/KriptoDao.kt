@@ -5,7 +5,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
 import com.andrian.core.data.source.local.entity.FavoriteKriptoEntity
 import com.andrian.core.data.source.local.entity.KriptoEntity
 import kotlinx.coroutines.flow.Flow
