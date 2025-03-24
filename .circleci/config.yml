@@ -4,8 +4,7 @@ orbs:
 
 jobs:
   build:
-    docker:
-      - image: cimg/android:2022.11
+    executor: android/android
     steps:
       - checkout
 
