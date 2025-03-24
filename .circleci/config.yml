@@ -1,26 +1,27 @@
 version: 2.1
 
-orbs:
-  android: circleci/android@0.2.1
-
 jobs:
   build:
-    executor: android/android
+    docker:
+      - image: cimg/android:2023.11
     steps:
       - checkout
       - restore_cache:
-          key: android-orb-v1-
+          key: android-build-cache-v1-{{ checksum "build.gradle.kts" }}
       - run:
           name: Chmod permissions
-          command: sudo chmod +x ./gradlew
+          command: chmod +x ./gradlew
+      - run:
+          name: Check Java version
+          command: java -version
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
       - save_cache:
-          key: 'android-orb-v1-{{ epoch }}'
+          key: android-build-cache-v1-{{ checksum "build.gradle.kts" }}
           paths:
             - ~/.android/build-cache
-            - ~/.android/cache
+            - ~/.gradle/caches
       - run:
           name: Run Build
           command: ./gradlew build
