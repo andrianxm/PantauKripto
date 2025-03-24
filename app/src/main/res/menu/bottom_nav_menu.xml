@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MenuTitle">
+    <item
+        android:id="@+id/favoriteFragment"
+        android:icon="@drawable/ic_favorite" />
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home" />
+
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/ic_account_circle" />
+</menu>

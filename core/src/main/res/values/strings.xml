@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="market_logo">Market Logo</string>
+    <string name="btc">BTC</string>
+    <string name="harga_terakhir_rp_100_000">Harga Terakhir: Rp 100.000</string>
+    <string name="beli_rp_90_000_jual_rp_95_000">Beli: Rp 90.000 | Jual: Rp 95.000</string>
+</resources>
