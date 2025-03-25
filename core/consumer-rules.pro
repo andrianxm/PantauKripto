@@ -56,4 +56,4 @@
 # -dontwarn java.util.concurrent.Flow*
 
 # Optional: keep line number for debug
-# -keepattributes SourceFile,LineNumberTable
+-keepattributes SourceFile,LineNumberTable

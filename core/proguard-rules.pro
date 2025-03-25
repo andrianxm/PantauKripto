@@ -1,21 +1,10 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+## Hapus debugging info di mode release
+-dontwarn android.support.**
+-dontwarn sun.misc.**
+-dontwarn java.lang.invoke.*
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+## Pastikan semua model data yang digunakan tidak dihapus
+-keep class com.andrian.core.data.source.remote.response.** { *; }
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
-
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+## Pastikan Retrofit tetap bekerja
+-keep class retrofit2.** { *; }
