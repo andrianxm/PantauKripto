@@ -38,6 +38,9 @@
 -dontwarn retrofit2.KotlinExtensions$*
 -dontwarn kotlinx.**
 
+# Pastikan semua class di dalam package core.di tetap ada
+-keep class com.andrian.core.di.** { *; }
+
 # Keep retrofit interfaces
 -if interface * { @retrofit2.http.* <methods>; }
 -keep,allowobfuscation interface <1>
