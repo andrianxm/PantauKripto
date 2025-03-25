@@ -12,21 +12,28 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: android-orb-v1-
+          key: android-orb-v1-{{ checksum "build.gradle.kts" }}-{{ checksum "app/build.gradle.kts" }}-{{ checksum "core/build.gradle.kts" }}-{{ checksum "favorite/build.gradle.kts" }}
       - run:
           name: Chmod permissions
           command: sudo chmod +x ./gradlew
       - run:
           name: Download Dependencies
-          command: ./gradlew androidDependencies
+          command: ./gradlew dependencies
       - save_cache:
-          key: 'android-orb-v1-{{ epoch }}'
+          key: android-orb-v1-{{ checksum "build.gradle.kts" }}-{{ checksum "app/build.gradle.kts" }}-{{ checksum "core/build.gradle.kts" }}-{{ checksum "favorite/build.gradle.kts" }}
           paths:
+            - ~/.gradle
             - ~/.android/build-cache
             - ~/.android/cache
       - run:
-          name: Run Build
-          command: ./gradlew build
+          name: Build Core Module
+          command: ./gradlew :core:assembleRelease
+      - run:
+          name: Build Favorite Module
+          command: ./gradlew :favorite:assembleRelease
+      - run:
+          name: Build App Module
+          command: ./gradlew :app:assembleRelease
       - store_artifacts:
           path: app/build/reports
           destination: reports
@@ -36,8 +43,9 @@ jobs:
       - store_test_results:
           path: app/build/test-results
       - store_artifacts:
-          path: app/build/outputs/apk/debug/
+          path: app/build/outputs/apk/release/
           destination: artifact-file
+
 workflows:
   build_and_test:
     jobs:
